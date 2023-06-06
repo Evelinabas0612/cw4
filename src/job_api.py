@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 import requests
 
-from api import JS_API_KEY
+from api import SJ_API_KEY
 from src.exception import ParsingError
 
 
@@ -52,7 +52,7 @@ class SuperJobAPI(AbstractJobAPI):
             "archived": False,
         }
         headers = {
-            'X-Api-App-Id': JS_API_KEY
+            'X-Api-App-Id': SJ_API_KEY
 
         }
 
