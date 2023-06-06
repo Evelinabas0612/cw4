@@ -1,6 +1,7 @@
 # Создание экземпляра класса для работы с API сайтов с вакансиями
 from src.job_api import HeadHunterAPI, SuperJobAPI
 from src.json_saver import JSONSaver
+
 from src.utils import sort_from_minimum_salary, get_top_vacancies
 
 

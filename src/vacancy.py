@@ -24,7 +24,7 @@ class Vacancy:
         return self.salary_from == other.salary_from
 
     def __repr__(self):
-        return f"<Vacancy id={self.id_vacancy} title={self.title} salary_from={self.salary_from} salary_to={self.salary_to} employer={self.employer} platform={self.platform} area={self.area} currency={self.currency}>"
+        return f"<Vacancy id={self.id_vacancy} title={self.title} url={self.url} salary_from={self.salary_from} salary_to={self.salary_to} employer={self.employer} platform={self.platform} area={self.area} currency={self.currency}>"
 
     def __str__(self):
-        return f"{self.title}\nSalary_from: {self.salary_from} Salary_to: {self.salary_to} Currency: {self.currency},\nEmployer: {self.employer},\nPlatform: {self.platform}\nArea: {self.area}"
+        return f"{self.title}\nURL: {self.url}\nSalary_from: {self.salary_from} Salary_to: {self.salary_to} Currency: {self.currency},\nEmployer: {self.employer},\nPlatform: {self.platform}\nArea: {self.area}"

@@ -1,9 +1,8 @@
 import json
 from abc import ABC, abstractmethod
 
-import vacancy
-from exception import JSONException
-from vacancy import Vacancy
+from src.exception import JSONException
+from src.vacancy import Vacancy
 
 
 class AbstractJSONSaver(ABC):
@@ -50,6 +49,8 @@ class JSONSaver(AbstractJSONSaver):
                 salary_from = 0
                 salary_to = "не указано"
                 currency = "не указано"
+                employer = "не указано"
+                area = "не указано"
                 if row["salary"]:
                     salary = row["salary"]
                     salary_from = salary["from"]
@@ -61,6 +62,16 @@ class JSONSaver(AbstractJSONSaver):
                         salary_to = "не указано"
                     if currency is None:
                         currency = "не указано"
+                if row["employer"]:
+                    employer_name = row["employer"]
+                    employer = employer_name["name"]
+                    if employer is None:
+                        employer = "не указано"
+                if row["area"]:
+                    area_name = row["area"]
+                    area = area_name["name"]
+                    if area is None:
+                        area = "не указано"
 
                 vacansies.append(Vacancy(
                     row["id"],
@@ -68,9 +79,9 @@ class JSONSaver(AbstractJSONSaver):
                     row["url"],
                     salary_from,
                     salary_to,
-                    row["employer"],
+                    employer,
                     "hh",
-                    row["area"],
+                    area,
                     currency))
 
         if "sj" in self.__file:
@@ -78,6 +89,8 @@ class JSONSaver(AbstractJSONSaver):
                 salary_from = 0
                 salary_to = "не указано"
                 currency = "не указано"
+                employer = "не указано"
+                area = "не указано"
                 if row["payment_from"]:
                     salary_from = row["payment_from"]
                     if salary_from is None:
@@ -90,15 +103,25 @@ class JSONSaver(AbstractJSONSaver):
                     currency = row["currency"]
                     if currency is None:
                         currency = "не указано"
+                if row["client"]:
+                    employer_name = row["client"]
+                    employer = employer_name["title"]
+                    if employer is None:
+                        employer = "не указано"
+                if row["town"]:
+                    area_name = row["town"]
+                    area = area_name["title"]
+                    if area is None:
+                        area = "не указано"
                 vacansies.append(Vacancy(
                     row["id"],
                     row["profession"],
                     row["link"],
                     salary_from,
                     salary_to,
-                    row["client"],
+                    employer,
                     "sj",
-                    row["town"],
+                    area,
                     currency))
 
         return vacansies

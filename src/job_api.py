@@ -3,7 +3,8 @@ from abc import ABC, abstractmethod
 
 import requests
 
-from exception import ParsingError
+from api import JS_API_KEY
+from src.exception import ParsingError
 
 
 class AbstractJobAPI(ABC):
@@ -18,7 +19,7 @@ class AbstractJobAPI(ABC):
 
 class HeadHunterAPI(AbstractJobAPI):
 
-    def get_request(self,search_query):
+    def get_request(self, search_query):
         """Метод делает запрос на https://api.hh.ru/vacancies и возвращает результат в формате json"""
 
         url = 'https://api.hh.ru/vacancies'
@@ -43,7 +44,6 @@ class SuperJobAPI(AbstractJobAPI):
 
     def get_request(self, search_query):
         """Метод делает запрос на https://api.superjob.ru/2.0/vacancies/ и возвращает результат в формате json"""
-
         url = 'https://api.superjob.ru/2.0/vacancies/'
         params = {
             'keyword': search_query,
@@ -52,7 +52,8 @@ class SuperJobAPI(AbstractJobAPI):
             "archived": False,
         }
         headers = {
-            'X-Api-App-Id': 'v3.r.137591220.8c54812be34ad4158bce9b07889e520d925ba06c.4d0ffd3e5e8b8e765c2fc32b62e499482d340be8'
+            'X-Api-App-Id': JS_API_KEY
+
         }
 
         response = requests.get(url,
